@@ -49,4 +49,8 @@ which consul &>/dev/null || {
   systemctl start consul
   systemctl status consul
 
+  wget https://dl.min.io/client/mc/release/linux-amd64/mc
+  chmod +x mc
+  mv mc /usr/local/bin
+
 }
