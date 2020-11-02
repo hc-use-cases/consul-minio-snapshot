@@ -1,0 +1,17 @@
+[Unit]
+Description="HashiCorp Consul - A service mesh solution"
+Documentation=https://www.consul.io/
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+PermissionsStartOnly=true
+ExecStart=/usr/bin/consul snapshot agent -config-file=/etc/consul.d/snap-conf.json
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+User=vagrant
+Group=vagrant
+
+[Install]
+WantedBy=multi-user.target

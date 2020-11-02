@@ -1,0 +1,48 @@
+{
+  "snapshot_agent": {
+    "http_addr": "127.0.0.1:8500",
+    "token": "",
+    "datacenter": "",
+    "ca_file": "",
+    "ca_path": "",
+    "cert_file": "",
+    "key_file": "",
+    "tls_server_name": "",
+    "log": {
+      "level": "INFO",
+      "enable_syslog": false,
+      "syslog_facility": "LOCAL0"
+    },
+    "snapshot": {
+      "interval": "1h",
+      "retain": 30,
+      "stale": false,
+      "service": "consul-snapshot",
+      "deregister_after": "72h",
+      "lock_key": "consul-snapshot/lock",
+      "max_failures": 3,
+      "local_scratch_path": ""
+    },
+    "local_storage": {
+      "path": "."
+    },
+    "aws_storage": {
+      "access_key_id": "minioadmin",
+      "secret_access_key": "minioadmin",
+      "s3_region": "east",
+      "s3_bucket": "consul-snapshot",
+      "s3_key_prefix": "consul-snapshot",
+      "s3_server_side_encryption": false,
+      "s3_static_snapshot_name": "",
+      "s3_endpoint": "http://192.168.178.65.xip.io:9000"
+    },
+    "azure_blob_storage": {
+      "account_name": "",
+      "account_key": "",
+      "container_name": ""
+    },
+    "google_storage": {
+      "bucket": ""
+    }
+  }
+}
