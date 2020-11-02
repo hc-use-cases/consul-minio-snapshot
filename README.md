@@ -69,7 +69,7 @@ on the same box you can run the command to create the snapshot
 
 # Test restore
 
-create k/v records
+create k/v record
 
 ```bash
 consul kv put key1 date-key1
