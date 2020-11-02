@@ -1,0 +1,8 @@
+# Volume to be used for MinIO server.
+MINIO_VOLUMES="/data"
+# Use if you want to run MinIO on a custom port.
+# MINIO_OPTS="--address :9199"
+# Access Key of the server.
+#MINIO_ACCESS_KEY=Server-Access-Key
+# Secret key of the server.
+#MINIO_SECRET_KEY=Server-Secret-Key
