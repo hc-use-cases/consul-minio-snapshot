@@ -12,7 +12,7 @@ Consul snapshot agent on Minio
 
 # How to consume
 
-this repository will 4 vagrant boxes - consul cluster (3 boxes), 1 minio server
+this repository will create 4 vagrant boxes - consul cluster (3 boxes), 1 minio server
 
 ```bash
 git clone git@github.com:hc-use-cases/consul-minio-snapshot.git
