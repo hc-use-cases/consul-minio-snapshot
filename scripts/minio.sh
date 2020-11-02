@@ -3,6 +3,8 @@
 set -x
 
 which minio &>/dev/null || {
+  pushd /var/tmp
+  
   wget https://dl.min.io/server/minio/release/linux-amd64/minio
   chmod +x minio
   mv minio /usr/local/bin
@@ -11,8 +13,9 @@ which minio &>/dev/null || {
   chmod +x mc
   mv mc /usr/local/bin
 
-  mkdir /data
-  chown -R vagrant /data && sudo chmod u+rxw /data
+  mkdir -p /data
+  chown -R vagrant /data
+  chmod u+rxw /data
 
   cp /vagrant/conf/minio /etc/default/minio
 
