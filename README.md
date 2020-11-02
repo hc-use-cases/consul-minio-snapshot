@@ -67,6 +67,16 @@ consul license put @consul.hclic
 
 on the same box you can run the command to create the snapshot
 
+# Test restore
+
+create k/v records
+
+```bash
+consul kv put key1 date-key1
+```
+
+run the command to create snapshot
+
 ```bash
 consul snapshot agent -config-file=/etc/consul.d/snap-conf.json
 ```
@@ -75,15 +85,48 @@ as result you'll have snapshot created on `minio` server
 
 ![snapshot in minio](img/minio-snapshot.png "snapshot in minio")
 
-on the same consul box you can configure minio client
+configure minio client on consul server
 
 ```bash
 mc config host add minio http://192.168.178.65.xip.io:9000 minioadmin minioadmin
 ```
 
-check if snapshot is available
+check if snapshot is available on remote object store
 
 ```bash
 vagrant@consul1:~$ sudo mc ls minio/consul-snapshot
-[2020-11-02 18:32:26 UTC] 4.8KiB consul-1604341945888098584.snap
+[2020-11-02 20:26:56 UTC] 4.9KiB consul-1604348815869206313.snap
+```
+
+copy snapshot to `/vagrant` directory
+
+```bash
+vagrant@consul1:~$ sudo mc cp minio/consul-snapshot/consul-1604348815869206313.snap /vagrant/
+```
+
+exit the box and delete the cluster
+
+```bash
+$ vagrant destroy -f
+```
+
+re-create the cluster
+
+```bash
+$ vagrant up
+```
+
+restore the snapshot - run this on one of the consul server
+
+```bash
+cd /vagrant
+$ consul snapshot restore consul-1604348815869206313.snap
+Restored snapshot
+```
+
+check if you have your old k/v record
+
+```bash
+$ consul kv get key1
+date-key1
 ```
