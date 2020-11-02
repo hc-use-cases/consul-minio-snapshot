@@ -6,7 +6,7 @@ Consul snapshot agent on Minio
 
 # Pre-requirements
 
-- [consult enterprise](https://www.consul.io/docs/enterprise) 
+- [consul enterprise](https://www.consul.io/docs/enterprise) 
 - [minio](https://min.io/)
 - [vagrant](https://www.vagrantup.com/)
 
