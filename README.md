@@ -34,8 +34,8 @@ end
 config.vm.define vm_name="minio" do |node|
   node.vm.box = "apopa/bionic64"
   node.vm.hostname = vm_name
-  node.vm.provision "shell", path: "scripts/minio.sh"
   node.vm.network "public_network", ip: "192.168.178.65"
+  node.vm.provision "shell", path: "scripts/minio.sh"
 end
 ```
 
@@ -75,18 +75,15 @@ as result you'll have snapshot created on `minio` server
 
 ![snapshot in minio](img/minio-snapshot.png "snapshot in minio")
 
-as well as in cli on `minio` box
-
-login
+on the same consul box you can configure minio client
 
 ```bash
-vagrant ssh minio
+mc config host add minio http://192.168.178.65.xip.io:9000 minioadmin minioadmin
 ```
 
-check the directory
+check if snapshot is available
 
 ```bash
-vagrant@minio:~$ ls -l /data/consul-snapshot/
-total 8
--rw-r--r-- 1 vagrant vagrant 4902 Nov  2 18:32 consul-1604341945888098584.snap
+vagrant@consul1:~$ sudo mc ls minio/consul-snapshot
+[2020-11-02 18:32:26 UTC] 4.8KiB consul-1604341945888098584.snap
 ```
